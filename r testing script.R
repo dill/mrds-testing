@@ -3,8 +3,6 @@
 # load mrds
 library(mrds)
 
-# something to hold the results
-lt.example.results<-list(lnl=c(),par1=c(),par2=c(),par3=c(),nonmono=c(),strict=c())
 
 # function to put the results into the above structure
 res.get<-function(struct,ds.object){
@@ -32,6 +30,8 @@ res.get<-function(struct,ds.object){
 
 # make sure the csv is in the same directory
 ltexample<-read.csv("linetransectexample.csv")
+# something to hold the results
+lt.example.results<-list(lnl=c(),par1=c(),par2=c(),par3=c(),nonmono=c(),strict=c())
 
 ## Using just the half-normal detection function
 # fit
@@ -102,6 +102,19 @@ xx<-ddf(dsmodel = ~mcds(key = "hn",adj.series="poly",adj.order=c(4),adj.scale="w
 lt.example.results<-res.get(lt.example.results,xx)
 
 
+########### Williams data
+# just doing the final fits from the paper
 
+
+# something to hold the results
+williams.results<-list(lnl=c(),par1=c(),par2=c(),par3=c(),nonmono=c(),strict=c())
+
+
+# load the Williams data
+source("loadwilliamsdata.R")
+
+# harbour porpoise, truncation at 500, no monotonicity
+xx<-ddf(dsmodel = ~mcds(key = "hr", formula = ~1), data = harbourporpoise, method = "ds", meta.data = list(width = 500,engine="foptim",nonmono=FALSE,strict=FALSE))
+williams.results<-res.get(williams.results,xx)
 
 
