@@ -109,7 +109,7 @@ lt.example.results<-res.get(lt.example.results,xx)
 # something to hold the results
 williams.results<-list(lnl=c(),par1=c(),par2=c(),par3=c(),nonmono=c(),strict=c())
 
-
+library(mrds)
 # load the Williams data
 source("loadwilliamsdata.R")
 
